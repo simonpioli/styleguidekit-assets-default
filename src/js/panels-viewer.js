@@ -57,7 +57,7 @@ var panelsViewer = {
     for (var i = 0; i < panels.length; ++i) {
 
       panel = panels[i];
-      
+
       // catch pattern panel since it doesn't have a name defined by default
       if (panel.name === undefined) {
         panel.name = patternData.patternEngineName || patternData.patternExtension;
@@ -74,15 +74,16 @@ var panelsViewer = {
           var e        = new XMLHttpRequest();
           e.onload     = (function(i, panels, patternData, iframeRequest) {
             return function() {
-              prismedContent    = Prism.highlight(this.responseText, Prism.languages['html']);
+              console.log(panels[i]);
+              prismedContent    = Prism.highlight(this.responseText, Prism.languages[PrismLanguages.get(panels[i].language)]);
               template          = document.getElementById(panels[i].templateID);
               templateCompiled  = Hogan.compile(template.innerHTML);
-              templateRendered  = templateCompiled.render({ 'language': 'html', 'code': prismedContent });
+              templateRendered  = templateCompiled.render({ 'language': panels[i].language, 'code': prismedContent });
               panels[i].content = templateRendered;
               Dispatcher.trigger('checkPanels', [panels, patternData, iframePassback, switchText]);
             };
           })(i, panels, patternData, iframePassback);
-          
+
           e.open('GET', fileBase+panel.httpRequestReplace+'?'+(new Date()).getTime(), true);
           e.send();
 
@@ -116,7 +117,7 @@ var panelsViewer = {
     var annotation, comment, count, div, els, item, markup, i;
     var patternPartial = patternData.patternPartial;
     patternData.panels = panels;
-    
+
     // set a default pattern description for modal pop-up
     if (!iframePassback && (patternData.patternDesc.length === 0)) {
       patternData.patternDesc = "This pattern doesn't have a description.";
@@ -182,13 +183,13 @@ var panelsViewer = {
 
     // figure out if pattern state should be drawn
     patternData.patternStateExists = (patternData.patternState.length > 0);
-    
+
     // figure if annotations should be drawn
     patternData.annotationExists = (patternData.annotations.length > 0);
-    
+
     // figure if the entire desc block should be drawn
     patternData.descBlockExists = (patternData.patternDescExists || patternData.lineageExists || patternData.lineageRExists || patternData.patternStateExists || patternData.annotationExists);
-    
+
     // set isPatternView based on if we have to pass it back to the styleguide level
     patternData.isPatternView = (iframePassback === false);
 
