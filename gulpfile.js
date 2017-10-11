@@ -10,6 +10,9 @@ var plugins            = gulpLoadPlugins({ scope: ['devDependencies'] });
 plugins.del            = require("del");
 plugins.mainBowerFiles = require("main-bower-files");
 
+var bowerSrc = ['src/bower_components/prism/components/prism-twig.js', 'src/bower_components/prism/components/prism-sass.js'];
+bowerSrc = bowerSrc.concat(plugins.mainBowerFiles());
+
 /* copy the dist folder into the designated public folder */
 function copyPublic(suffix) {
 	if (args['copy-dist'] !== undefined) {
@@ -42,7 +45,7 @@ gulp.task('clean:js', function (cb) {
 
 /* core tasks */
 gulp.task('build:bower', ['clean:bower'], function(){
-	return gulp.src(plugins.mainBowerFiles())
+	return gulp.src(bowerSrc)
 		.pipe(plugins.rename({suffix: '.min'}))
 		.pipe(plugins.uglify())
 		.pipe(gulp.dest("dist/styleguide/bower_components"))
@@ -110,5 +113,5 @@ gulp.task('default', ['build:bower', 'build:css', 'build:html', 'build:js-patter
 		gulp.watch(['src/html/*'], ['build:html']);
 		gulp.watch(['src/js/*'], ['build:js-pattern']);
 	}
-	
+
 });
