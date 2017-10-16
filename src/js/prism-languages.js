@@ -46,7 +46,7 @@ var PrismLanguages = {
 
 // this shouldn't get hardcoded, also need to think about including Prism's real lang libraries (e.g. handlebars & twig)
 PrismLanguages.add({
-	'twig': 'markup'
+	'twig': 'twig'
 });
 PrismLanguages.add({
 	'mustache': 'markup'
