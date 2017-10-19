@@ -213,7 +213,6 @@
 	<!-- the template for the modal slider -->
 	<script type="text/mustache" class="pl-js-panel-template-base">
 		<!-- description, etc. -->
-{{# descBlockExists }}
 
 <div class="pl-c-pattern-info__panel pl-c-pattern-info__panel--info pl-js-pattern-info">
 
@@ -246,11 +245,17 @@
 	</div><!--end pl-c-pattern-info__header-->
 	{{/ isPatternView }} 
 	
-	{{# patternDescExists }}
+	
 	<div class="pl-c-pattern-info__description pl-c-text-passage">
-		{{{ patternDesc }}} {{# patternDescAdditions }} {{{ patternDescAdditions }}} {{/ patternDescAdditions }}
+		{{ ^patternDescExists }}
+			{{ ^patternDescAdditions }}
+				<p>This pattern has no description</p>
+			{{/ patternDescAdditions }}
+		{{/ patternDescExists }}
+		
+		{{# patternDescExists }} {{{ patternDesc }}} {{/ patternDescExists }} {{# patternDescAdditions }} {{{ patternDescAdditions }}} {{/ patternDescAdditions }}
 	</div><!--end pl-c-pattern-info__description-->
-	{{/ patternDescExists }} 
+	
 	
 	{{# lineageExists }}
 	<p class="pl-c-lineage pl-js-lineage">
@@ -302,7 +307,6 @@
 	{{/ annotationExists }}
 
 </div><!--end pl-c-pattern-info__panel-->
-{{/ descBlockExists }}
 
 <div class="pl-c-pattern-info__panel pl-c-pattern-info__panel--code">
 
@@ -321,9 +325,7 @@
 		<div id="pl-{{ patternPartial }}-panels" class="pl-c-tabs__content">
 
 			{{# panels }}
-			<div id="pl-{{ patternPartial }}-{{ id }}-panel" class="pl-c-tabs__panel pl-js-tab-panel">
-				{{{ content }}}
-			</div><!--end pl-c-tabs__panel-->
+			<div id="pl-{{ patternPartial }}-{{ id }}-panel" class="pl-c-tabs__panel pl-js-tab-panel">{{{ content }}}</div><!--end pl-c-tabs__panel-->
 			{{/ panels }}
 
 		</div><!--end pl-c-tabs__content-->
@@ -331,15 +333,12 @@
 	</div><!--end pl-c-tabs-->
 
 </div><!--end pl-c-pattern-info__panel-->
-	</script>
-
-	<!-- the template for code-related tabs in the code view slider -->
-	<script type="text/mustache" id="pl-panel-template-code">
-		<pre class="language-{{ language }}">
-	<code id="pl-code-fill-{{ language }}" class="language-{{ language }}">{{{ code }}}</code>
-</pre>
 
 	</script>
+
+<!-- the template for code-related tabs in the code view slider -->
+<script type="text/mustache" id="pl-panel-template-code"><pre class="language-{{ language }}"><code id="pl-code-fill-{{ language }}" class="language-{{ language }}">{{{ code }}}</code></pre>
+</script>
 
 	<!-- load Pattern Lab data -->
 	<script src="styleguide/data/patternlab-data.js"></script>
