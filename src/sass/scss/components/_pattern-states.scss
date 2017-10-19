@@ -6,26 +6,33 @@
 * Pattern states add color-coded dots next to patterns
 * in the dropdown navigation.
 */
+$small-font-size: 0.75em;
+
 .pl-c-pattern-state {
-    display: inline-block;
-    width: 5px;
-    height: 5px;
-    margin-left: 5px;
     position: relative;
-    top: 1px;
-    border-radius: 50%;
+    display: inline-block;
+    padding: 0.4em 1.2em;
+    margin-left: 5px;
+    font-size: $small-font-size;
+    line-height: 1;
+
+    border-radius: $small-font-size * 5;
     background: $pl-color-state-info;
+    color: lighten($pl-color-state-info, 60%);
 
     &--complete {
         background: $pl-color-state-complete;
+        color: lighten($pl-color-state-complete, 60%);
     }
 
     &--inreview {
         background: $pl-color-state-inreview;
+        color: lighten($pl-color-state-inreview, 60%);
     }
 
     &--deprecated {
         background: $pl-color-state-deprecated;
+        color: lighten($pl-color-state-deprecated, 60%);
     }
 }
 
