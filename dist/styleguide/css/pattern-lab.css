@@ -1165,23 +1165,27 @@
 * in the dropdown navigation.
 */
 .pl-c-pattern-state {
-  display: inline-block;
-  width: 5px;
-  height: 5px;
-  margin-left: 5px;
   position: relative;
-  top: 1px;
-  border-radius: 50%;
+  display: inline-block;
+  padding: 0.4em 1.2em;
+  margin-left: 5px;
+  font-size: 0.75em;
+  line-height: 1;
+  border-radius: 3.75em;
   background: #02A4D5;
+  color: white;
 }
 .pl-c-pattern-state--complete {
   background: #03790F;
+  color: #b1fdb9;
 }
 .pl-c-pattern-state--inreview {
   background: #C7A118;
+  color: white;
 }
 .pl-c-pattern-state--deprecated {
   background: #B00B02;
+  color: #ffe7e5;
 }
 
 /**
