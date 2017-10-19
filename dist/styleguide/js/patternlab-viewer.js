@@ -1088,6 +1088,11 @@ var panelsViewer = {
 
 		// figure out if pattern state should be drawn
 		patternData.patternStateExists = (patternData.patternState.length > 0);
+		patternData.patternStateLabel = null;
+		
+		if (patternData.patternStateExists) {
+			patternData.patternStateLabel = config.patternStates[patternData.patternState];
+		}
 
 		// figure if annotations should be drawn
 		patternData.annotationExists = (patternData.annotations.length > 0);
