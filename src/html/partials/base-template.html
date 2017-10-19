@@ -1,5 +1,4 @@
 <!-- description, etc. -->
-{{# descBlockExists }}
 
 <div class="pl-c-pattern-info__panel pl-c-pattern-info__panel--info pl-js-pattern-info">
 
@@ -32,11 +31,17 @@
 	</div><!--end pl-c-pattern-info__header-->
 	{{/ isPatternView }} 
 	
-	{{# patternDescExists }}
+	
 	<div class="pl-c-pattern-info__description pl-c-text-passage">
-		{{{ patternDesc }}} {{# patternDescAdditions }} {{{ patternDescAdditions }}} {{/ patternDescAdditions }}
+		{{ ^patternDescExists }}
+			{{ ^patternDescAdditions }}
+				<p>This pattern has no description</p>
+			{{/ patternDescAdditions }}
+		{{/ patternDescExists }}
+		
+		{{# patternDescExists }} {{{ patternDesc }}} {{/ patternDescExists }} {{# patternDescAdditions }} {{{ patternDescAdditions }}} {{/ patternDescAdditions }}
 	</div><!--end pl-c-pattern-info__description-->
-	{{/ patternDescExists }} 
+	
 	
 	{{# lineageExists }}
 	<p class="pl-c-lineage pl-js-lineage">
@@ -88,7 +93,6 @@
 	{{/ annotationExists }}
 
 </div><!--end pl-c-pattern-info__panel-->
-{{/ descBlockExists }}
 
 <div class="pl-c-pattern-info__panel pl-c-pattern-info__panel--code">
 
