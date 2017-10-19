@@ -247,8 +247,8 @@
 	
 	
 	<div class="pl-c-pattern-info__description pl-c-text-passage">
-		{{ ^patternDescExists }}
-			{{ ^patternDescAdditions }}
+		{{^ patternDescExists }}
+			{{^ patternDescAdditions }}
 				<p>This pattern has no description</p>
 			{{/ patternDescAdditions }}
 		{{/ patternDescExists }}
