@@ -25,7 +25,9 @@
 			{{ patternName }} 
 			
 			{{# patternState }}
-			<span class="pl-c-pattern-state pl-c-pattern-state--{{ patternState }}" title="{{ patternState }}"></span>
+			<span class="pl-c-pattern-state pl-c-pattern-state--{{ patternState }}" title="{{ patternStateLabel }}">
+				{{ patternStateLabel }}
+			</span>
 			{{/ patternState }}
 		</h2><!--end pl-c-pattern-info__title-->
 

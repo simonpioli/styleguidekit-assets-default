@@ -239,7 +239,9 @@
 			{{ patternName }} 
 			
 			{{# patternState }}
-			<span class="pl-c-pattern-state pl-c-pattern-state--{{ patternState }}" title="{{ patternState }}"></span>
+			<span class="pl-c-pattern-state pl-c-pattern-state--{{ patternState }}" title="{{ patternStateLabel }}">
+				{{ patternStateLabel }}
+			</span>
 			{{/ patternState }}
 		</h2><!--end pl-c-pattern-info__title-->
 
@@ -331,6 +333,7 @@
 	</div><!--end pl-c-tabs-->
 
 </div><!--end pl-c-pattern-info__panel-->
+
 	</script>
 
 	<!-- the template for code-related tabs in the code view slider -->
